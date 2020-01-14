@@ -1,0 +1,33 @@
+.container-blue {
+    margin-top: 80px;
+    background: rgba(0, 208, 208, 0.6) !important;
+    border-radius: 16px 16px 0px 0px;
+
+
+}
+
+h1 {
+    margin-left:20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+h2 {
+    margin-left:20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.container-blue-light {
+    margin-top: 10px;
+    background: rgba(0, 208, 208, 0.2) !important;
+
+
+}
+
+p {
+    margin-left:20px;
+    margin-right:20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}

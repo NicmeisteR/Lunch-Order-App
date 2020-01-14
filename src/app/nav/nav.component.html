@@ -1,0 +1,227 @@
+<header>
+		<!-- <div class="container"> -->
+				<!-- <nav class="navbar navbar-expand-lg navbar-light customNav " *ngIf="authService.loginStatus; else showLoggedOut"> -->
+			
+				<!-- <ng-template #showLoggedOut>
+					<nav class="navbar navbar-expand-lg navbar-light customNav">
+						<a class="navbar-brand" routerLink="/home">
+						<img src="assets/images/logo.png" alt="login logo" height="60">
+						</a>
+					</nav>
+				</ng-template> -->
+			<!-- </div> -->
+</header>
+<nav class="navbar navbar-expand-lg navbar-light customNav">
+	<!-- <a class="navbar-brand" routerLink="/home">
+		<img src="assets/images/logo.png" alt="login logo" height="60">
+	</a> -->
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+	 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav navbar-center" >
+			<li class="nav-item">
+				<a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerLink="/orders" routerLinkActive="active">Orders</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerLink="/audit" routerLinkActive="active">Audit Log</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
+			</li>
+		</ul>
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false">
+					<!-- Hello {{ user.value.displayName }} -->
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" routerLink="/dash" routerLinkActive="active">Dash</a>
+					<a class="dropdown-item" (click)="logout()" style="cursor:pointer">Logout</a>
+				</div>
+			</li>
+			<!-- <ng-template #showLoggedIn>
+				<li class="nav-item">
+					<a class="nav-link" data-toggle="modal" data-target="#exampleModal" routerLink="/user/">Login/Register</a>
+				</li>
+			</ng-template> -->
+		</ul>
+	</div>
+</nav>
+<!-- <img class="d-block w-100" src="assets/images/LAN Banner V1.png" runat="server" id="ban11" alt="First slide"> -->
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+	Launch demo modal
+  </button> -->
+  
+  <!-- Modal -->
+  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<div *ngIf="afAuth.user | async as user; else showLeave">
+					<h5 class="modal-title">Leaving? 😢</h5>
+				</div>
+				<ng-template #showLeave>
+					<h5 class="modal-title">Please Login</h5>
+				</ng-template>
+
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div *ngIf="afAuth.user | async as user; else showLogin">
+					<h1>Hello {{ user.displayName }}!</h1>
+					<button (click)="logout()">Logout</button>
+					</div>
+					<ng-template #showLogin>
+					<form class="form-signin text-center">
+						<img class="mb-4" src="https://www.infoslips.com/Public/images/mainLogo.png" alt="" width="180">
+						<div>
+							<h1 class="h3 mb-3 font-weight-normal">Google Login</h1>
+							<button type="button" class="btn btn-primary" (click)="login()">Login</button>
+						</div>
+						<p class="mt-5 mb-3 text-muted">© 2019</p>
+					</form>
+					</ng-template>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="getUser()">Close</button>
+			</div>
+			</div>
+		</div>
+	</div> -->
+	
+	<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<div *ngIf="afAuth.user | async as user; else showLeave">
+				<h5 class="modal-title">Log Out?</h5>
+			</div>
+			<ng-template #showLeave>
+				<h5 class="modal-title">Sign in</h5>
+			</ng-template>
+
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<img class="mb-4" src="assets/images/logo.png" alt="login logo" height="80" style=" display:block; margin:auto;">
+			<ul class="nav nav-pills nav-fill">
+				<li class="nav-item">
+					<a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
+				</li>
+			</ul>
+			<ng-template #showLogin>
+				<div class="tab-content" id="registrationTabs">
+					<div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+							<form class="form-signin text-center">
+								<br/>
+
+								<!-- <label for="inputEmail" class="sr-only">Email address</label>
+								<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""> -->
+								<div class="input-group mb-2">
+									<input  type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+									<div class="input-group-append">
+										<span class="input-group-text" id="basic-addon2">@infoslips.com</span>
+									</div>
+								</div>
+
+								<label for="inputPassword" class="sr-only">Password</label>
+								<input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+								<p class="mt-5 mb-3 text-muted">2019 © InfoSlips</p>
+							</form>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeLoginModal">Close</button>
+								<button type="button" class="btn btn-primary" (click)="loginWithEmail()">Login</button>
+							</div>
+					</div>
+				<div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+						<form class="form-signin text-center" #f="ngForm" (ngSubmit)="register(f)">
+								<br/>
+
+								<div class="input-group mb-2">
+									<label for="inputName" class="sr-only">Name</label>
+									<input type="text" name="inputName" class="form-control" placeholder="Name" autofocus="" ngModel required #formModel="ngModel">
+								</div>
+
+								<div class="input-group mb-2">
+									<label for="inputSurname" class="sr-only">Surname</label>
+									<input type="text" name="inputSurame" class="form-control" placeholder="Surname" autofocus="" ngModel>
+								</div>
+								<!-- <label for="inputEmail" class="sr-only">Email address</label>
+								<input type="email" name="inputEmail" class="form-control" placeholder="Email address" autofocus ngModel> -->
+
+								<label for="inputEmail" class="sr-only">Email address</label>
+								<div class="input-group mb-2">
+									<input type="email" name="inputEmail" class="form-control" placeholder="Email address" autofocus ngModel>
+									<div class="input-group-append">
+										<span class="input-group-text" id="basic-addon2">@infoslips.com</span>
+									</div>
+								</div>
+
+								<!-- <label for="inputAvatar" class="sr-only">Avatar</label>
+								<input type="text" name="inputAvatar" class="form-control" placeholder="Avatar URL" autofocus="" ngModel required > -->
+
+								<!-- <div class="dropzone" 
+									dropZone
+									(hovered)="toggleHover($event)"
+									[class.hovering]="isHovering">
+
+									<h3>Upload Profile Pic</h3>
+
+									<div class="file">
+											<label class="file-label">
+
+											<input class="file-input" type="file" id="fileItem">
+
+												<span class="file-cta">
+													<span class="file-icon">
+														<i class="fa fa-upload"></i>
+													</span><br/>
+													<span class="file-label">
+														or drag and drop…
+													</span>
+												</span>
+											</label>
+										</div>
+								</div> -->
+
+								<label for="inputPassword" class="sr-only">Password</label>
+								<input type="password" name="inputPassword" class="form-control" placeholder="Password" required ngModel>
+
+								<p class="mt-5 mb-3 text-muted">2019 © InfoSlips</p>
+							</form>
+						<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeLoginModal">Close</button>
+								<button type="button" class="btn btn-primary" (click)="register(f)">Register</button>
+							</div>
+				</div>
+			</div>
+		</ng-template>
+			<div *ngIf="afAuth.user | async as user; else showLogin">
+				<h1>Hello {{ user.value.displayName }}!</h1>
+				<button (click)="logout()">Logout</button>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<a style="display:none" routerLink="/" id="logoutclick">logoutclick</a>
+
+<div class="navbar navbar-expand-lg navbar-light bg-dark"></div>

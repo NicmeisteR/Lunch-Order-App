@@ -1,0 +1,84 @@
+<div class="border">
+<div class="container loginForm">
+  <img class="mb-4 center" src="assets/images/logo.png" alt="login logo" height="80">
+  <ul class="nav nav-pills nav-fill">
+    <li class="nav-item">
+      <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login"
+        aria-selected="true">Login</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register"
+        aria-selected="false">Register</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="registrationTabs">
+    <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+      <form class="form-signin text-center" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">Email</div>
+          </div>
+          <input type="email" name="loginEmail" class="form-control" autofocus="" ngModel required
+            #formModel="ngModel">
+        </div>
+
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">Password</div>
+          </div>
+          <input type="password" name="loginPassword" class="form-control" required="" ngModel>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeLoginModal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="login(loginForm)">Login</button>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+      <form class="form-signin text-center" #regForm="ngForm" (ngSubmit)="register(regForm)">
+
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">Gamertag</div>
+          </div>
+          <input type="text" name="regGamertag" class="form-control" autofocus="" ngModel required
+            #formModel="ngModel">
+        </div>
+
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">Name</div>
+          </div>
+          <input type="text" name="regName" class="form-control" ngModel required>
+        </div>
+
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">Surname</div>
+          </div>
+          <input type="text" name="regSurname" class="form-control" ngModel required>
+        </div>
+
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">Email</div>
+          </div>
+          <input type="email" name="regEmail" class="form-control" ngModel required>
+        </div>
+
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">Password</div>
+          </div>
+          <input type="password" name="regPassword" class="form-control" ngModel required>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeLoginModal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="register(regForm)">Register</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<a style="display:none" routerLink="/home" id="homeclick">home</a>

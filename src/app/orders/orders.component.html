@@ -1,0 +1,302 @@
+<div class="padded">
+
+
+<div class="row">
+  <div class="col-md-6">  
+    <!-- <button class="btn btn-primary" onclick="window.print()" id="printBtn">Print Orders</button>
+    <br/>
+    <hr/> -->
+    <div *ngIf="adminUser">
+        <!-- <div *ngFor="let orderOption of ordersOptions | async"> -->
+          <form #orderOptionForm="ngForm" (ngSubmit)="onOptionSubmit(orderOptionForm)">
+            <div class="form-check form-check-inline">
+              <input type="checkbox" name="KFC" ngModel required #formModel="ngModel">
+              <label class="form-check-label" for="KFC">KFC</label>
+            </div>
+    
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="Bean" ngModel>    
+              <label class="form-check-label" for="Bean">Bean</label>
+            </div>
+    
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="FishAways" ngModel>    
+                <label class="form-check-label" for="FishAways">Fish Aways</label>
+              </div>
+    
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="Steers" ngModel> 
+              <label class="form-check-label" for="Steers">Steers</label>
+            </div>
+    
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="Nibbles" ngModel>
+              <label class="form-check-label" for="Nibbles">Nibbles</label>
+            </div>
+    
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="Braai" ngModel>
+              <label class="form-check-label" for="Braai">Braai</label>
+            </div>
+    
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="McDonalds" ngModel>
+              <label class="form-check-label" for="McDonalds">Mc Donalds</label>
+            </div>
+    
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="TasteOfIndia" ngModel>
+              <label class="form-check-label" for="Taste of India">Taste of India</label>
+            </div>
+    
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="BurgerKing" ngModel>
+              <label class="form-check-label" for="BurgerKing">Burger King</label>
+            </div>
+    
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="DieFishNChipsPlek" ngModel>
+              <label class="form-check-label" for="DieFishNChipsPlek">Die Fish N Chips Plek</label>
+            </div>
+              
+            <div class="form-check form-check-inline">
+              <button class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+          <br/>
+        <!-- </div> -->
+    </div>
+
+      <div class="row">
+          <div class="col-md-12">
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+              <div class="row">
+                <div class="col">
+                  <label for="nameForm">Name</label>
+                  <input type="text" class="form-control" id="nameForm" name="nameForm" ngModel required #formModel="ngModel" placeholder="Name" readonly>
+                </div>
+                <div class="col">
+                  <label for="placeForm">Place</label>
+                  <select class="form-control" id="placeForm" name="placeForm" ngModel>
+                    <ng-container *ngFor="let orderOption of ordersOptions | async">
+                      <option *ngIf="orderOption.option" value="{{ orderOption.name }}">{{ orderOption.name }}</option>
+                    </ng-container>
+                  </select>
+                </div>
+                <div class="col">
+                  <label for="orderForm">Order</label>
+                  <input type="text" class="form-control" id="orderForm" name="orderForm" ngModel>
+                </div>
+                <div class="col">
+                  <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Add Order</button> -->
+                  <button class="btn btn-primary btn-order">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-12 row">
+            <br/>
+            <div class="col-md-6" *ngFor="let orderOption of ordersOptions | async">
+              <div class="card" *ngIf="orderOption.option && orderOption.name != 'Braai'">
+                <div class="card-top">
+                  <img class="card-img-top" src="assets/images/{{ orderOption.name }}.png" alt="Card image cap">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{ orderOption.name}} Menu</h5>
+                  <p class="card-text">{{ orderOption.name}} Menu</p>
+                  <a href="{{ orderOption.menu }}" target="_blank" class="btn btn-primary" *ngIf="orderOption.option && orderOption.name != 'Braai'" style="margin-bottom:20px;">{{ orderOption.name}} Menu</a>
+                </div>
+              </div>
+            </div>
+            <!-- <a class="btn btn-primary" data-toggle="modal" data-target="#steersModal" routerLink="/user/">Steers Menu (In-Progress)</a> -->
+            <br/>
+          </div>
+        </div>
+  </div>
+  <div class="col-md-6"><div class="table-responsive">
+    <table class="table thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Place</th>
+        <th>Order</th>
+        <!-- <th>Edit</th> -->
+        <!-- <th>
+          <button class="btn btn-primary" (click)="deleteAll()" *ngIf="adminUser; else normalUser">Delete</button>
+          <ng-template #normalUser>
+            Delete
+          </ng-template>
+        </th> -->
+      </tr>
+      <!-- <div *ngIf="!adminUser; else showAll">
+        <tr *ngFor="let order of orders | async">
+          <td *ngIf="order.name === user.value.displayName">{{order.name}}</td>
+          <td *ngIf="order.name === user.value.displayName">{{order.place}}</td>
+          <td *ngIf="order.name === user.value.displayName">{{order.lunch}}</td>
+          <td *ngIf="order.name === user.value.displayName">
+            <button class="btn btn-primary" (click)="delete(order)">Delete</button>
+          </td> -->
+          <!-- <td *ngIf="order.name === user.value.displayName">
+  
+          </td> -->
+        <!-- </tr>
+      </div> -->
+        <tr *ngFor="let order of orders | async">
+          <td>{{order.name}}</td>
+          <td>{{order.place}}</td>
+          <td>{{order.lunch}}</td>
+          <!-- <td *ngIf="order.name === user.value.displayName; else empty">
+            <button class="btn btn-primary" (click)="delete()">Delete</button>
+          </td> -->
+          <ng-template #empty>
+            <td><br/></td>
+          </ng-template>
+          <!-- <td></td> -->
+        </tr>
+    </table>
+    <!-- <p>
+      <span *ngFor="let player of players | async">{{player.gamertag}};</span>
+    </p> -->
+  </div>
+  </div>
+</div>
+
+
+	<!-- Modal -->
+  <!-- <div class="modal fade" id="steersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>Steers Menu (In-Progress)</h1>
+  
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeSteers">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="accordion">
+            <div class="card">
+              <div class="card-header accordionHeader" id="steers_KingSteers_Burgers" data-toggle="collapse" data-target="#collapseKingBurgers" aria-controls="collapseKingBurgers">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" aria-expanded="true" >
+                    King Steer Burgers
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseKingBurgers" class="collapse" aria-labelledby="steers_KingSteers_Burgers" data-parent="#collapseKingBurgers">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="card-body">
+                          <div class="row">
+                            <div *ngFor="let item of steers_KingSteers" class="col-md-4" >
+                              <div class="card" style="width: 18rem;border-color: transparent !important">
+                                <img src="https://steers.co.za{{ item.product_img }}" class="card-img-top">
+                                <div class="card-body">
+                                  <h5 class="card-title">{{ item.product_title }}</h5>
+                                  <p class="card-text">{{ item.product_description }}</p>
+                                  <h5>Prices:</h5>
+                                  <table class="table">
+                                    <tr>
+                                      <td><h6>Burger Only: R{{ item.product_only_price }}</h6></td>
+                                      <td><a class="btn btn-primary" (click)="steersOrder(item.product_title)">Order Burger</a></td>
+                                    </tr>
+                                    <tr>
+                                      <td><h6>Meal: R{{ item.product_meal_price }}</h6></td>
+                                      <td><a class="btn btn-primary" (click)="steersOrder(item.product_title + Meal)">Order Meal</a></td>
+                                    </tr>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+
+              <div class="card-header accordionHeader" id="steers_KingSteers_Burgers" data-toggle="collapse" data-target="#collapseSnackBurgers" aria-controls="collapseSnackBurgers">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" aria-expanded="true" >
+                    Beef Burgers
+                  </button>
+                </h2>
+              </div>
+
+              <div id="collapseSnackBurgers" class="collapse" aria-labelledby="steers_KingSteers_Burgers" data-parent="#collapseKingBurgers">
+                <div class="card-body">
+                    <div class="row">
+                      <div class="card-body">
+                        <div class="row">
+                          <div *ngFor="let item of steersmenu" class="col-md-4" >
+                            <div class="card" style="width: 18rem;border-color: transparent !important">
+                              <img src="https://steers.co.za{{ item.product_img }}" class="card-img-top">
+                              <div class="card-body">
+                                <h5 class="card-title">{{ item.product_title }}</h5>
+                                <p class="card-text">{{ item.product_description }}</p>
+                                <h5>Prices:</h5>
+                                <table class="table">
+                                  <tr>
+                                    <td><h6>Burger Only: R{{ item.product_only_price }}</h6></td>
+                                    <td><a class="btn btn-primary" (click)="steersOrder(item.product_title)">Order Burger</a></td>
+                                  </tr>
+                                  <tr>
+                                    <td><h6>Meal: R{{ item.product_meal_price }}</h6></td>
+                                    <td><a class="btn btn-primary" (click)="steersOrder(item.product_title + Meal)">Order Meal</a></td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-header accordionHeader" id="steers_KingSteers_Burgers" data-toggle="collapse" data-target="#collapseSnackBurgers1" aria-controls="collapseSnackBurgers1">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" aria-expanded="true" >
+                    Cheese Burgers
+                  </button>
+                </h2>
+              </div>
+
+              <div id="collapseSnackBurgers1" class="collapse" aria-labelledby="steers_KingSteers_Burgers" data-parent="#collapseSnackBurgers1">
+                <div class="card-body">
+                    <div class="row">
+                      <div class="card-body">
+                        <div class="row">
+                          <div *ngFor="let item of steersmenu1" class="col-md-4" >
+                            <div class="card" style="width: 18rem;border-color: transparent !important">
+                              <img src="https://steers.co.za{{ item.product_img }}" class="card-img-top">
+                              <div class="card-body">
+                                <h5 class="card-title">{{ item.product_title }}</h5>
+                                <p class="card-text">{{ item.product_description }}</p>
+                                <h5>Prices:</h5>
+                                <table class="table">
+                                  <tr>
+                                    <td><h6>Burger Only: R{{ item.product_only_price }}</h6></td>
+                                    <td><a class="btn btn-primary" (click)="steersOrder(item.product_title)">Order Burger</a></td>
+                                  </tr>
+                                  <tr>
+                                    <td><h6>Meal: R{{ item.product_meal_price }}</h6></td>
+                                    <td><a class="btn btn-primary" (click)="steersOrder(item.product_title + Meal)">Order Meal</a></td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div> -->
+
+
+
+</div>

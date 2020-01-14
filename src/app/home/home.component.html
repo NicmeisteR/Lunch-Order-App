@@ -1,0 +1,14 @@
+<!-- <h1>Welcome,</h1> -->
+
+<br/>
+<br/>
+<h4>Please place your order for today!</h4>
+<p>Choices are:</p>
+<ul>
+    <ng-container *ngFor="let orderOption of ordersOptions | async">
+        <li *ngIf="orderOption.option">{{ orderOption.name }}</li>
+    </ng-container>
+</ul>
+<br/>
+
+<button class="btn btn-primary" routerLink="/orders">Order</button>

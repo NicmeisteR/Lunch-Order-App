@@ -1,0 +1,15 @@
+<div class="container-blue-light">
+  <h2>Commit Log</h2>
+  <table class="table table-dark">
+    <tr>
+      <td>Author</td>
+      <td>Message</td>
+      <td>Date</td>
+    </tr>
+    <tr *ngFor="let item of repoInfo">
+      <td>{{item.author.login}}</td>
+      <td>{{item.commit.message}}</td>
+      <td>{{formatDate(item.commit.author.date)}}</td>
+    </tr>
+  </table>
+</div>
