@@ -73,7 +73,7 @@
               <div class="row">
                 <div class="col">
                   <label for="nameForm">Name</label>
-                  <input type="text" class="form-control" id="nameForm" name="nameForm" ngModel required #formModel="ngModel" placeholder="Name" readonly>
+                  <input type="text" class="form-control" id="nameForm" name="nameForm" ngModel required #formModel="ngModel" placeholder="Name">
                 </div>
                 <div class="col">
                   <label for="placeForm">Place</label>
@@ -99,7 +99,7 @@
             <div class="col-md-6" *ngFor="let orderOption of ordersOptions | async">
               <div class="card" *ngIf="orderOption.option && orderOption.name != 'Braai'">
                 <div class="card-top">
-                  <img class="card-img-top" src="assets/images/{{ orderOption.name }}.png" alt="Card image cap">
+                  <img class="card-img-top" src="assets/images/{{ orderOption.name }}.jpg" alt="Card image cap">
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">{{ orderOption.name}} Menu</h5>

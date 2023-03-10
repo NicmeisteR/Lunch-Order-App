@@ -76,8 +76,8 @@ export class OrdersComponent implements OnInit {
     //   })
     // }
 
-    this.db.collection('orders').doc(this.user.value.displayName).set({
-      name: this.user.value.displayName,
+    this.db.collection('orders').doc(infoName).set({
+      name: infoName,
       place: infoPlace,
       lunch: infoOrder
     })
