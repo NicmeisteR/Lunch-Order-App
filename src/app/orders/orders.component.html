@@ -96,18 +96,21 @@
           </div>
           <div class="col-md-12 row">
             <br/>
-            <div class="col-md-6" *ngFor="let orderOption of ordersOptions | async">
-              <div class="card" *ngIf="orderOption.option && orderOption.name != 'Braai'">
-                <div class="card-top">
-                  <img class="card-img-top" src="assets/images/{{ orderOption.name }}.jpg" alt="Card image cap">
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">{{ orderOption.name}} Menu</h5>
-                  <p class="card-text">{{ orderOption.name}} Menu</p>
-                  <a href="{{ orderOption.menu }}" target="_blank" class="btn btn-primary" *ngIf="orderOption.option && orderOption.name != 'Braai'" style="margin-bottom:20px;">{{ orderOption.name}} Menu</a>
+            <ng-container *ngFor="let orderOption of ordersOptions | async">
+              <div class="col-md-6" *ngIf="orderOption.option && orderOption.name != 'Braai'">
+                <div class="card" >
+                  <div class="card-top">
+                    <img class="card-img-top" src="assets/images/{{ orderOption.name }}.jpg" alt="Card image cap">
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">{{ orderOption.name}} Menu</h5>
+                    <p class="card-text">{{ orderOption.name}} Menu</p>
+                    <a href="{{ orderOption.menu }}" target="_blank" class="btn btn-primary" *ngIf="orderOption.option && orderOption.name != 'Braai'" style="margin-bottom:20px;">{{ orderOption.name}} Menu</a>
+                  </div>
                 </div>
               </div>
-            </div>
+            </ng-container>
+
             <!-- <a class="btn btn-primary" data-toggle="modal" data-target="#steersModal" routerLink="/user/">Steers Menu (In-Progress)</a> -->
             <br/>
           </div>
@@ -159,8 +162,8 @@
   </div>
   </div>
 </div>
-
-
+<h1>Payment</h1>
+<img src="assets/images/tikkie.png" width="250px">
 	<!-- Modal -->
   <!-- <div class="modal fade" id="steersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
